@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Hotel Detail</title>
+</head>
+<body>
+    <h1 class="text-5xl font-bold text-red-600">Hotel Detail</h1>
+
+    <ul>
+        <li th:text="${hotel.name}"></li>
+        <li th:text="${hotel.address}"></li>
+        <li th:text="${hotel.city}"></li>
+        <li th:text="${hotel.description}"></li>
+        <a href="/hotels">Back to Hotels</a>
+    </ul>
+</body>
+</html>
