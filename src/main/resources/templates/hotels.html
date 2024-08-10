@@ -2,17 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Hotels</title>
 </head>
 <body>
-    <h1>Hotels</h1>
-    <ul>
-        <li th:each="hotel : ${hotels}">
-            <a th:href="@{'/hotels/' + ${hotel.id}}" th:text="${hotel.name}"></a>
-            (<a th:href="@{'/hotels/edit/' + ${hotel.id}}">Edit Hotel</a>)
-            (<a th:href="@{'/hotels/delete/' + ${hotel.id}}">Delete</a>)
-        </li>
-    </ul>
-    <a href="/hotels/new">Add New Hotel</a>
+<header class="text-gray-700 body-font border-b border-gray-200">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="https://homePage" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Grand Hotels</span>
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a th:href="@{'/hotels'}" class="mr-5 hover:text-gray-900">Hotels</a>
+            <a class="mr-5 hover:text-gray-900">Booking</a>
+            <a class="mr-5 hover:text-gray-900">Customer</a>
+        </nav>
+        <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Sign Up
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<section class="text-gray-400 bg-gray-900 body-font border-solid border border-blue-500">
+    <div class="container border-solid border border-b-amber-50 px-5 py-24 mx-auto my-5">
+        <div class="flex justify-between w-full my-2 p-4 mx-auto border-solid border border-yellow-500">
+            <span class=" h-full font-bold text-xl">Our Partnered Hotels</span>
+            <span class=" text-xl">
+                <a href="/hotels/new">
+                    Add New Hotel
+                </a>
+            </span>
+        </div>
+        <div class="flex flex-wrap sm:-m-4 border-solid border border-green-500">
+            <div class="p-2 md:w-1/3 sm:mb-0 flex flex-col gap-5 justify-around border border-solid border-red-500" th:each="hotel : ${hotels}">
+                <div class="rounded-lg h-64 overflow-hidden">
+                    <img alt="content" class="object-cover object-center h-full w-full" src="images/pexels-pixabay-164595.jpg">
+                </div>
+                <div>
+                    <h2 class="text-xl font-medium title-font" th:text="${hotel.name}"></h2>
+                    <p class="text-base leading-relaxed mt-2" th:text="${hotel.description}"></p>
+                </div>
+                <div class="mt-5">
+                    <span th:text="${hotel.city}"></span>
+                    <span th:text="${hotel.address}"></span>
+                </div>
+                <div class="flex justify-between ">
+                    <button class="inline-block px-4 py-2 text-xs font-medium text-center text-blue-700 uppercase transition bg-transparent border-2 border-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
+                        <a th:href="@{'/hotels/edit/' + ${hotel.id}}">Edit Hotel</a>
+                    </button>
+                    <button class="inline-block px-4 py-2 text-xs font-medium text-center text-blue-700 uppercase transition bg-transparent border-2 border-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 ">
+                        <a th:href="@{'/hotels/delete/' + ${hotel.id}}">Delete Hotel</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--    <h1 class="">Hotels</h1>-->
+<!--    <ul>-->
+<!--        <li th:each="hotel : ${hotels}">-->
+<!--            <a th:href="@{'/hotels/' + ${hotel.id}}" th:text="${hotel.name}"></a>-->
+<!--            (<a th:href="@{'/hotels/edit/' + ${hotel.id}}">Edit Hotel</a>)-->
+<!--            (<a th:href="@{'/hotels/delete/' + ${hotel.id}}">Delete</a>)-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <a href="/hotels/new">Add New Hotel</a>-->
 </body>
 </html>

@@ -25,7 +25,7 @@ public class HotelController {
         HotelDto hotel = hotelService.getHotelById(id);
         model.addAttribute("hotel", hotel);
 
-        return "hotel";
+        return "rooms";
     }
 
     @GetMapping
