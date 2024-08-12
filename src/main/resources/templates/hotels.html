@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A brief description of the page.">
+    <meta name="author" content="Your Name or Company Name">
     <title>Hotels</title>
 </head>
 <body>
 <header class="text-gray-700 body-font border-b border-gray-200">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="https://homePage" target="_blank">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
@@ -27,36 +32,39 @@
     </div>
 </header>
 
-<section class="text-gray-400 bg-gray-900 body-font border-solid border border-blue-500">
-    <div class="container border-solid border border-b-amber-50 px-5 py-24 mx-auto my-5">
-        <div class="flex justify-between w-full my-2 p-4 mx-auto border-solid border border-yellow-500">
-            <span class=" h-full font-bold text-xl">Our Partnered Hotels</span>
-            <span class=" text-xl">
-                <a href="/hotels/new">
-                    Add New Hotel
-                </a>
-            </span>
+<section class="text-gray-400 h-[100vh] bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <!-- Header Section -->
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-3xl font-bold text-white">Our Partnered Hotels</h1>
+            <a href="/hotels/new" class="text-lg font-semibold text-blue-400 hover:text-blue-300">Add New Hotel</a>
         </div>
-        <div class="flex flex-wrap sm:-m-4 border-solid border border-green-500">
-            <div class="p-2 md:w-1/3 sm:mb-0 flex flex-col gap-5 justify-around border border-solid border-red-500" th:each="hotel : ${hotels}">
-                <div class="rounded-lg h-64 overflow-hidden">
-                    <img alt="content" class="object-cover object-center h-full w-full" src="images/pexels-pixabay-164595.jpg">
-                </div>
-                <div>
-                    <h2 class="text-xl font-medium title-font" th:text="${hotel.name}"></h2>
-                    <p class="text-base leading-relaxed mt-2" th:text="${hotel.description}"></p>
-                </div>
-                <div class="mt-5">
-                    <span th:text="${hotel.city}"></span>
-                    <span th:text="${hotel.address}"></span>
-                </div>
-                <div class="flex justify-between ">
-                    <button class="inline-block px-4 py-2 text-xs font-medium text-center text-blue-700 uppercase transition bg-transparent border-2 border-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 focus:outline-none">
-                        <a th:href="@{'/hotels/edit/' + ${hotel.id}}">Edit Hotel</a>
-                    </button>
-                    <button class="inline-block px-4 py-2 text-xs font-medium text-center text-blue-700 uppercase transition bg-transparent border-2 border-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-100 ">
-                        <a th:href="@{'/hotels/delete/' + ${hotel.id}}">Delete Hotel</a>
-                    </button>
+
+        <!-- Hotels Grid -->
+        <div class="flex flex-wrap -m-4">
+            <div class="p-4 md:w-1/3" th:each="hotel : ${hotels}">
+                <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden flex flex-col">
+                    <!-- Image Container -->
+                    <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/1203x503" alt="[[${hotel.name}]]">
+
+                    <!-- Content Wrapper -->
+                    <div class="p-6 flex-grow flex flex-col">
+                        <!-- Hotel Name and Address -->
+                        <h2 class="text-lg font-medium text-white mb-2" th:text="${hotel.name}"></h2>
+                        <p class="leading-relaxed text-base text-gray-400 mb-4 flex-grow" th:text="${hotel.description}"></p>
+                        <p class="text-md italic text-gray-500 mb-4" th:text="${hotel.address}"></p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="p-6 border-t border-gray-700">
+                        <div class="flex space-x-3">
+                            <a id="edit" th:href="@{'/hotels/edit/' + ${hotel.id}}"
+                               class="flex-grow px-3 py-2 text-center text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Edit</a>
+                            <a href="" id="viewRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-green-500 rounded-md hover:bg-green-600">View Rooms</a>
+                            <a th:href="@{'/hotels/delete/' + ${hotel.id}}"
+                               class="flex-grow px-3 py-2 text-center text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Delete</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,5 +79,6 @@
 <!--        </li>-->
 <!--    </ul>-->
 <!--    <a href="/hotels/new">Add New Hotel</a>-->
+<script src="/static/javaScript/hotels.js"></script>
 </body>
 </html>
