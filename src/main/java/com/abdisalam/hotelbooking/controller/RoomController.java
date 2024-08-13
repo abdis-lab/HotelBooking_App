@@ -44,12 +44,12 @@ public class RoomController {
     }
 
 
-    @GetMapping("/edit/{id}")
-    public String editRoomForm(@PathVariable Long id, Model model){
-        Room room = roomService.getRoomById(id);
-        model.addAttribute("room", room);
-        return "hotel_room";
-    }
+//    @GetMapping("/edit/{id}")
+//    public String editRoomForm(@PathVariable Long id, Model model){
+//        Room room = roomService.getRoomById(id);
+//        model.addAttribute("room", room);
+//        return "hotel_room";
+//    }
 
 
     @PostMapping("/update/{id}")

@@ -1,7 +1,6 @@
 package com.abdisalam.hotelbooking.controller;
 
 import com.abdisalam.hotelbooking.model.Customer;
-import com.abdisalam.hotelbooking.repository.CustomerRepository;
 import com.abdisalam.hotelbooking.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8">
@@ -10,8 +10,11 @@
     <title>Error</title>
 </head>
 <body>
+<div class="container">
     <h1>An Error Has Occurred</h1>
-    <p th:text="${#messages}"></p>
-    <a href="/hotels">Back to Hotels</a>
+    <!-- Display the error message -->
+    <p th:text="${#messages}">An unexpected error occurred. Please try again later.</p>
+    <a href="/index">Back to Home</a>
+</div>
 </body>
 </html>

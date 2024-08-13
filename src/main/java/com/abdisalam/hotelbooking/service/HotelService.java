@@ -17,7 +17,7 @@ public class HotelService {
     private HotelRepository hotelRepository;
 
     public List<HotelDto> getAllHotels(){
-        List<Hotel> hotels = (List<Hotel>) hotelRepository.findAll();
+        List<Hotel> hotels = hotelRepository.findAll();
         return hotels.stream()
                 .map(HotelConverter::convertToDTO)
                 .collect(Collectors.toList());
