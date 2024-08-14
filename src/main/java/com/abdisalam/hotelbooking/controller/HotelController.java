@@ -11,14 +11,18 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 @RequestMapping("/hotels")
 public class HotelController {
 
-    @Autowired
     private HotelService hotelService;
+
+    public HotelController(HotelService hotelService){
+        this.hotelService = hotelService;
+    }
 
     @GetMapping("/{id}")
     public String viewHotel(@PathVariable Long id, Model model){
@@ -38,17 +42,25 @@ public class HotelController {
 
     @GetMapping("/new")
     public String createHotelForm(Model model){
-        model.addAttribute("hotel", new Hotel());
+        model.addAttribute("hotelDto", new HotelDto());
         return "create_hotel";
     }
 
-    @PostMapping
-    public String saveHotel(@ModelAttribute("hotel") @Valid HotelDto hotelDto, BindingResult result){
+    @PostMapping("/new")
+    public String addHotel(@ModelAttribute("hotelDto") HotelDto hotelDto, BindingResult result, Model model) throws Exception{
         if(result.hasErrors()){
             return "create_hotel";
         }
-        hotelService.saveHotel(hotelDto);
-        return "redirect:/hotels";
+
+
+        try{
+            hotelService.saveHotel(hotelDto);
+            return "redirect:/hotels";
+        }catch(IOException e){
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "Image upload failed, Please try again");
+            return "create_hotel";
+        }
     }
 
     @GetMapping("/edit/{id}")
@@ -60,7 +72,7 @@ public class HotelController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateHotel(@PathVariable Long id, @ModelAttribute("hotel") @Valid HotelDto hotelDto, BindingResult result){
+    public String updateHotel(@PathVariable Long id, @ModelAttribute("hotel") @Valid HotelDto hotelDto, BindingResult result) throws Exception {
         if(result.hasErrors()){
             return "edit_hotel";
         }

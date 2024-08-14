@@ -6,23 +6,25 @@ import com.abdisalam.hotelbooking.model.Hotel;
 public class HotelConverter {
 
     public static HotelDto convertToDTO(Hotel hotel){
-        return new HotelDto(
-                hotel.getId(),
-                hotel.getName(),
-                hotel.getAddress(),
-                hotel.getCity(),
-                hotel.getDescription()
-        );
+        HotelDto hotelDto = new HotelDto();
+        hotelDto.setId(hotel.getId());
+        hotelDto.setName(hotel.getName());
+        hotelDto.setAddress(hotel.getAddress());
+        hotelDto.setCity(hotel.getCity());
+        hotelDto.setDescription(hotel.getDescription());
+        hotelDto.setImagePath(hotel.getImage());
+        return hotelDto;
     }
 
-    public static Hotel convertToEntity(HotelDto hotelDto){
-        return new Hotel(
-                hotelDto.getId(),
-                hotelDto.getAddress(),
-                hotelDto.getCity(),
-                hotelDto.getName(),
-                hotelDto.getDescription()
-        );
+    public static Hotel convertToEntity(HotelDto hotelDto, String imagePath){
+        Hotel hotel = new Hotel();
+        hotel.setId(hotelDto.getId());
+        hotel.setName(hotelDto.getName());
+        hotel.setAddress(hotelDto.getAddress());
+        hotel.setCity(hotelDto.getCity());
+        hotel.setDescription(hotelDto.getDescription());
+        hotel.setImage(imagePath);
+        return hotel;
     }
 
 }

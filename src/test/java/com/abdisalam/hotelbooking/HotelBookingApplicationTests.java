@@ -31,7 +31,7 @@ class HotelBookingApplicationTests {
     @BeforeEach
     public void setUp(){
         MockitoAnnotations.openMocks(this);
-        hotel = new Hotel(1L, "New Hotel", "123 Street", "City", "Great Hotel");
+        hotel = new Hotel(1L, "New Hotel", "123 Street", "City", "Great Hotel", "imagePath.jpg");
     }
 
     @Test

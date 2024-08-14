@@ -27,6 +27,9 @@
         <label for="description">Description:</label>
         <textarea id="description" th:field="*{description}"></textarea>
 
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="imageFile">Hotel Image</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" id="imageFile" th:field="*{imageFile}" required>
+
         <br/>
         <button type="submit">Save</button>
 
