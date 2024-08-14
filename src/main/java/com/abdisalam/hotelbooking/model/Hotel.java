@@ -20,7 +20,7 @@ public class Hotel {
     private String city;
     private String name;
     private String description;
-
+    private String image;
 
 
 }

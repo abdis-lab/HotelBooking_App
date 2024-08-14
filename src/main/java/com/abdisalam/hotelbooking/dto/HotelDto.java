@@ -25,4 +25,8 @@ public class HotelDto {
 
     private String description;
 
+
+
+    private String imagePath;
+
 }

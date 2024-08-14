@@ -10,27 +10,44 @@
     <div class="w-full max-w-xs mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold mb-6 text-center">Register</h1>
 
+        <!-- Global Error Message -->
+        <div th:if="${errorMessage}" class="text-red-500 text-sm">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
         <!-- Registration Form -->
-        <form th:action="@{/register}" method="post">
+        <form th:action="@{/register}" th:object="${user}" method="post">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="username" name="username" placeholder="Enter your username">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="username" th:field="*{username}" placeholder="Enter your username" required>
+                <div th:if="${#fields.hasErrors('username')}" class="text-red-500 text-sm">
+                    <p th:errors="*{username}">Username Error</p>
+                </div>
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password" name="password" placeholder="Enter your password">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password" th:field="*{password}" placeholder="Enter your password" required>
+                <div th:if="${#fields.hasErrors('password')}" class="text-red-500 text-sm">
+                    <p th:errors="*{password}">Password Error</p>
+                </div>
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">Confirm Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">Confirmed Password</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="confirmPassword" th:field="*{confirmPassword}" placeholder="Enter your password" required>
+                <div th:if="${#fields.hasErrors('confirmPassword')}" class="text-red-500 text-sm">
+                    <p th:errors="*{confirmPassword}">Password Error</p>
+                </div>
             </div>
 
             <div class="flex items-center justify-between">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Register
                 </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" th:href="@{/login}">
+                    Already have an account? Login
+                </a>
             </div>
         </form>
     </div>

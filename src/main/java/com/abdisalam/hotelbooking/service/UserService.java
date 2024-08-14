@@ -18,17 +18,14 @@ public class UserService {
     }
 
     public void registerUser(User user){
-        if(!user.getPassword().equals(user.getConfirmPassword())){
-            throw new RuntimeException("Password do not match");
+        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+            throw new RuntimeException("User already exists");
         }
 
-        User createdUser = new User();
-        createdUser.setUsername(user.getUsername());
-        createdUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        createdUser.setRole("USER");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("USER");
 
         userRepository.save(user);
-
     }
 
 

@@ -13,7 +13,7 @@
 <body>
 <header class="text-gray-700 body-font border-b border-gray-200">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/index" target="_blank">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/index">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
@@ -37,7 +37,7 @@
         <!-- Header Section -->
         <div class="flex justify-between items-center mb-12">
             <h1 class="text-3xl font-bold text-white">Our Partnered Hotels</h1>
-            <a href="/hotels/new" class="text-lg font-semibold text-blue-400 hover:text-blue-300">Add New Hotel</a>
+            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"  href="/hotels/new" class="text-lg font-semibold text-blue-400 hover:text-blue-300">Add New Hotel</a>
         </div>
 
         <!-- Hotels Grid -->
@@ -58,10 +58,10 @@
                     <!-- Action Buttons -->
                     <div class="p-6 border-t border-gray-700">
                         <div class="flex space-x-3">
-                            <a id="edit" th:href="@{'/hotels/edit/' + ${hotel.id}}"
+                            <a id="edit" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/edit/' + ${hotel.id}}"
                                class="flex-grow px-3 py-2 text-center text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Edit</a>
                             <a href="" id="viewRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-green-500 rounded-md hover:bg-green-600">View Rooms</a>
-                            <a th:href="@{'/hotels/delete/' + ${hotel.id}}"
+                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/delete/' + ${hotel.id}}"
                                class="flex-grow px-3 py-2 text-center text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Delete</a>
                         </div>
                     </div>
