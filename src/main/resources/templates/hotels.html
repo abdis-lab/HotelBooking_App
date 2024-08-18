@@ -60,7 +60,7 @@
                         <div class="flex space-x-3">
                             <a id="edit" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/edit/' + ${hotel.id}}"
                                class="flex-grow px-3 py-2 text-center text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Edit</a>
-                            <a href="" id="viewRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-green-500 rounded-md hover:bg-green-600">View Rooms</a>
+                            <a th:href="@{'/rooms/hotel/' + ${hotel.id}}" id="viewRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-green-500 rounded-md hover:bg-green-600">View Rooms</a>
                             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/delete/' + ${hotel.id}}"
                                class="flex-grow px-3 py-2 text-center text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Delete</a>
                         </div>

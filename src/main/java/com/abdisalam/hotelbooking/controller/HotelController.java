@@ -55,7 +55,8 @@ public class HotelController {
 
         try{
             hotelService.saveHotel(hotelDto);
-            return "redirect:/hotels";
+            model.addAttribute("successMessage", "Hotel has been successfully created");
+            return "redirect:/hotels/new?success=true";
         }catch(IOException e){
             e.printStackTrace();
             model.addAttribute("errorMessage", "Image upload failed, Please try again");

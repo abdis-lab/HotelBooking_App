@@ -53,21 +53,4 @@ public class SecurityConfig extends WebSecurityConfiguration {
         return httpSecurity.build();
     }
 
-//
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//
-//        UserDetails user = User.withUsername("user")
-//                .password(passwordEncoder.encode("password"))
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User.withUsername("admin")
-//                .password(passwordEncoder.encode("admin"))
-//                .roles("ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
-
 }

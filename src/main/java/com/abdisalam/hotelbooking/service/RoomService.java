@@ -7,25 +7,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class RoomService {
 
-    @Autowired
-    private RoomRepository roomRepository;
+public interface RoomService {
 
-    public List<Room> getAllRooms(){
-        return roomRepository.findAll();
-    }
+    Room saveRoom(Room room);
 
-    public Room getRoomById(Long id){
-        return roomRepository.findById(id).orElse(null);
-    }
+    List<Room> getAllRooms();
 
-    public Room saveRoom(Room room){
-        return roomRepository.save(room);
-    }
-
-    public void deleteRoom(Long id){
-        roomRepository.deleteById(id);
-    }
+    List<Room> getRoomsByHotelId(Long hotelId);
+    Room getRoomById(Long id);
+    void deleteRoom(Long id);
 }

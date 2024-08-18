@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A brief description of the page.">
+    <meta name="author" content="Your Name or Company Name">
     <title>Create Hotel</title>
 </head>
-<body>
-<div class="container mx-auto py-12">
+<body class="relative">
+<div class="container relative z-10 mx-auto py-12 ">
     <div class="w-full max-w-lg mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
         <h1 class="text-2xl font-bold mb-6 text-center">Add New Hotel</h1>
 
-        <form th:action="@{/hotels/new}" th:object="${hotelDto}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/hotels/new}" class="z-10" th:object="${hotelDto}" method="post" enctype="multipart/form-data">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" th:field="*{name}" placeholder="Enter hotel name" required>
@@ -32,7 +38,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="imageFile">Hotel Image</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" id="imageFile" th:field="*{imageFile}" required>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" id="imageFile" th:field="*{imageFile}" accept="image/*" required>
             </div>
 
             <div class="flex items-center justify-between">
@@ -47,5 +53,47 @@
         </div>
     </div>
 </div>
+
+
+<div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg p-8">
+        <h2 class="text-2xl font-bold mb-4">Hotel Created Successfully!</h2>
+        <div class="mt-4 flex justify-between">
+            <a href="/hotels"><button class="bg-blue-500 text-white px-4 py-2 rounded">OK</button></a>
+            <a href="/hotels/new"><button class="bg-gray-500 text-white px-4 py-2 rounded">Create More Hotels</button></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const modal = document.getElementById('successModal');
+
+        if (urlParams.get('success') === 'true') {
+            showModal(modal);
+        }
+    });
+
+    function showModal(modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function hideModal(modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    function redirectToHotels() {
+        hideModal(document.getElementById('successModal'));
+        window.location.href = "/hotels";
+    }
+
+    function createMoreHotels() {
+        hideModal(document.getElementById('successModal'));
+        window.location.href = "/hotels/new";
+    }
+</script>
 </body>
 </html>

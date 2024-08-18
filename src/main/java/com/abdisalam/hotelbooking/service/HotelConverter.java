@@ -27,4 +27,14 @@ public class HotelConverter {
         return hotel;
     }
 
+    public static Hotel convertToEntity(HotelDto hotelDto){
+        Hotel hotel = new Hotel();
+        hotel.setId(hotelDto.getId());
+        hotel.setName(hotelDto.getName());
+        hotel.setAddress(hotelDto.getAddress());
+        hotel.setCity(hotelDto.getCity());
+        hotel.setDescription(hotelDto.getDescription());
+        return hotel;
+    }
+
 }

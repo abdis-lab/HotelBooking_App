@@ -60,12 +60,6 @@ public class HotelService {
             Files.write(path, imageFile.getBytes());
 
             imagePath = "/uploads/" + fileName;
-
-//            byte[] bytes = imageFile.getBytes();
-
-//            Files.write(path, bytes);
-//
-//            imagePath = "/uploads/" + imageFile.getOriginalFilename();
         }
 
         Hotel hotel = HotelConverter.convertToEntity(hotelDto, imagePath);
