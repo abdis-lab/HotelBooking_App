@@ -5,13 +5,11 @@ import com.abdisalam.hotelbooking.model.Hotel;
 import com.abdisalam.hotelbooking.model.Room;
 import com.abdisalam.hotelbooking.model.RoomType;
 import com.abdisalam.hotelbooking.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -37,9 +35,17 @@ public class RoomController {
 
         model.addAttribute("rooms", rooms);
         model.addAttribute("hotel", hotelDto);
+        model.addAttribute("roomTypes", roomTypes);
         model.addAttribute("room", new Room());
         model.addAttribute("roomType", new RoomType());
         return "rooms";
+    }
+
+
+    @PostMapping("/hotel/{hotelId}/roomType/new")
+    public String saveRoomType(@PathVariable Long hotelId, @ModelAttribute("roomType") RoomType roomType){
+        roomTypeService.saveRoomType(roomType);
+        return "redirect:/rooms/hotel/" + hotelId;
     }
 
 
@@ -57,6 +63,7 @@ public class RoomController {
         model.addAttribute("roomType", new RoomType());
         model.addAttribute("rooms", new Room());
         model.addAttribute("hotel", hotelDto);
+        model.addAttribute("roomTypes", roomType);
 
 
         return "rooms";
@@ -65,33 +72,22 @@ public class RoomController {
     }
 
 
-    @PostMapping("/hotel/{hotelId}/new")
+    @PostMapping("/hotel/{hotelId}/room/new")
     public String saveRoom(@PathVariable Long hotelId,
-                           @ModelAttribute("room") Room room,
-                           @ModelAttribute("roomType") RoomType roomType){
-
-        //save roomType
-        RoomType savedRoomType = roomTypeService.saveRoomType(roomType);
+                           @ModelAttribute("room") Room room){
 
         //Associating Room with the hotel and roomType
         HotelDto hotelDto = hotelService.getHotelById(hotelId);
         Hotel hotel = HotelConverter.convertToEntity(hotelDto);
 
+        RoomType roomType = roomTypeService.getRoomTypeById(room.getRoomType().getId());
 
         room.setHotel(hotel);
-        room.setRoomType(savedRoomType);
+        room.setRoomType(roomType);
 
         roomService.saveRoom(room);
         return "redirect:/rooms/hotel/" + hotelId;
     }
-
-
-//    @GetMapping("/edit/{id}")
-//    public String editRoomForm(@PathVariable Long id, Model model){
-//        Room room = roomService.getRoomById(id);
-//        model.addAttribute("room", room);
-//        return "hotel_room";
-//    }
 
 
     @PostMapping("/update/{id}")

@@ -13,5 +13,7 @@ public interface RoomTypeService {
 
     RoomType getRoomTypeById(Long id);
 
-    void deleteRoomType(RoomType roomType);
+    void deleteRoomType(Long id);
+
+    List<RoomType> getRoomTypesByHotelId(Long hotelId);
 }

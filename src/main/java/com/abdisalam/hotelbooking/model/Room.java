@@ -19,7 +19,7 @@ public class Room {
     private String RoomNumber;
     private double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
 

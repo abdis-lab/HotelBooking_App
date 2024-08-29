@@ -2,10 +2,8 @@ package com.abdisalam.hotelbooking.controller;
 
 
 import com.abdisalam.hotelbooking.dto.HotelDto;
-import com.abdisalam.hotelbooking.model.Hotel;
 import com.abdisalam.hotelbooking.service.HotelService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

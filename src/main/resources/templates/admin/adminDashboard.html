@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>DashBoard</title>
+</head>
+<body class="bg-gray-100">
+<h1>Admin dashboard</h1>
+<!-- Sidebar -->
+<!--<div class="flex w-full h-[100vh]">-->
+<!--    <aside class="w-64 bg-gray-800 text-white flex-shrink-0 h-screen">-->
+<!--        <div class="p-6">-->
+<!--            <a href="#" class="text-white text-2xl font-semibold">Admin Dashboard</a>-->
+<!--        </div>-->
+<!--        <hr>-->
+<!--        <nav class="mt-10">-->
+<!--            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Hotels</a>-->
+<!--            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Rooms</a>-->
+<!--            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Room Types</a>-->
+<!--            <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Users</a>-->
+<!--        </nav>-->
+<!--    </aside>-->
+
+<!--    &lt;!&ndash; Content Area &ndash;&gt;-->
+<!--    <div class="flex-[1] w-full flex flex-col">-->
+<!--        &lt;!&ndash; Top Bar &ndash;&gt;-->
+<!--        <header class="bg-white shadow p-4 flex justify-between">-->
+<!--            <div>-->
+<!--                <h1 class="text-xl font-semibold">Dashboard</h1>-->
+<!--            </div>-->
+<!--            <div class="flex items-center">-->
+<!--                <button class="text-gray-600">-->
+<!--                    &lt;!&ndash; Notification Icon &ndash;&gt;-->
+<!--                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405 1.405A2.032 2.032 0 0117.5 19H6.5c-.47 0-.902-.184-1.095-.496L4 17h5m6 0a4.978 4.978 0 01-4-1.528M9 17a4.978 4.978 0 01-4-1.528m4 1.528a5.001 5.001 0 01-5-5V7a5.001 5.001 0 0110 0v4c0 1.38-.56 2.63-1.528 3.472M9 17v2a2 2 0 104 0v-2m-4 0h4"></path>-->
+<!--                    </svg>-->
+<!--                </button>-->
+<!--                <div class="ml-4">-->
+<!--                    &lt;!&ndash; Profile Icon &ndash;&gt;-->
+<!--                    <img class="w-8 h-8 rounded-full" src="https://via.placeholder.com/40" alt="Profile Picture">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </header>-->
+
+<!--        &lt;!&ndash; Main Content &ndash;&gt;-->
+<!--        <main class="p-6 bg-gray-100 flex-1">-->
+<!--            <h2 class="text-2xl font-semibold mb-6">Manage Hotels</h2>-->
+
+<!--            <div th:if="${#lists.isEmpty(hotels)}">-->
+<!--                <p>No hotels have been added yet.</p>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Hotels Table &ndash;&gt;-->
+<!--            <div th:if="${not #lists.isEmpty(hotels)}" class="bg-white shadow-md rounded my-6">-->
+<!--                <table class="min-w-full bg-white">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th class="py-2 px-10 border-b bg-gray-200 text-gray-600 text-center text-sm uppercase font-semibold">ID</th>-->
+<!--                        <th class="py-2 px-10 border-b bg-gray-200 text-gray-600 text-center text-sm uppercase font-semibold">Name</th>-->
+<!--                        <th class="py-2 px-10 border-b bg-gray-200 text-gray-600 text-center text-sm uppercase font-semibold">City</th>-->
+<!--                        <th class="py-2 px-10 border-b bg-gray-200 text-gray-600 text-center text-sm uppercase font-semibold">Action</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr class="border-b border-gray-200">-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            1-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            Grand Palace Hotel-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            New York-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700 text-center">-->
+<!--                            <div class="inline-flex rounded-md shadow-sm" role="group">-->
+<!--                                <button onclick="showRoomTypes(3)" class="px-4 py-2 bg-green-500 text-white rounded-l hover:bg-green-600">Room Types</button>-->
+<!--                                <button onclick="showRooms(3)" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Rooms</button>-->
+<!--                                <button onclick="deleteHotel(1)" class="px-4 py-2 bg-red-500 text-white rounded-r hover:bg-red-600">Delete</button>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr class="border-b border-gray-200">-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            1-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            Grand Palace Hotel-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            New York-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700 text-center">-->
+<!--                            <div class="inline-flex rounded-md shadow-sm" role="group">-->
+<!--                                <button onclick="showRoomTypes(1)" class="px-4 py-2 bg-green-500 text-white rounded-l hover:bg-green-600">Room Types</button>-->
+<!--                                <button onclick="showRooms(1)" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Rooms</button>-->
+<!--                                <button onclick="deleteHotel(1)" class="px-4 py-2 bg-red-500 text-white rounded-r hover:bg-red-600">Delete</button>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr class="border-b border-gray-200">-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            1-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            Grand Palace Hotel-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700">-->
+<!--                            New York-->
+<!--                        </td>-->
+<!--                        <td class="px-6 py-4 text-sm text-gray-700 text-center">-->
+<!--                            <div class="inline-flex rounded-md shadow-sm" role="group">-->
+<!--                                <button onclick="showRoomTypes(2)" class="px-4 py-2 bg-green-500 text-white rounded-l hover:bg-green-600">Room Types</button>-->
+<!--                                <button onclick="showRooms(2)" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Rooms</button>-->
+<!--                                <button onclick="deleteHotel(2)" class="px-4 py-2 bg-red-500 text-white rounded-r hover:bg-red-600">Delete</button>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <tr th:each="hotel : ${hotels}">-->
+<!--                        <td th:text="${hotel != null ? hotel.id : 'No ID'}" class="py-2 px-4 border-b border-gray-200 text-sm">Hotel ID</td>-->
+<!--                        <td th:text="${hotel != null ? hotel.name : 'No Name'}" class="py-2 px-4 border-b border-gray-200 text-sm">Hotel Name</td>-->
+<!--                        <td th:text="${hotel != null ? hotel.city : 'No City'}" class="py-2 px-4 border-b border-gray-200 text-sm">Hotel City</td>-->
+<!--                        <td class="py-2 px-4 border-b border-gray-200 text-sm">-->
+<!--                            <div class="relative">-->
+<!--                                <button onclick="toggleDropdown('dropdown-[[${hotel != null ? hotel.id : 0}]]')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Manage</button>-->
+<!--                                <div id="dropdown-[[${hotel != null ? hotel.id : 0}]]" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">-->
+<!--                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="showRoomTypes([[${hotel.id}]])">Manage Room Types</a>-->
+<!--                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="showRooms([[${hotel.id}]])">Manage Rooms</a>-->
+<!--                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Delete Hotel</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Room Types and Rooms Management Sections &ndash;&gt;-->
+<!--            <div id="roomTypesSection" class="hidden bg-white shadow-md rounded my-6 p-6">-->
+<!--                <h3 class="text-xl font-semibold mb-4">Manage Room Types for Hotel ID: <span id="hotelIdForRoomTypes"></span></h3>-->
+<!--                <form th:action="@{/rooms/hotel/{hotelId}/roomType/new(hotelId=${hotel.id})}" th:object="${roomType}" method="post">-->
+<!--                    <div class="mb-4">-->
+<!--                        <label for="roomTypeName" class="block text-gray-700">Room Type Name:</label>-->
+<!--                        <input type="text" id="roomTypeName" th:field="*{name}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>-->
+<!--                    </div>-->
+<!--                    <div class="mb-4">-->
+<!--                        <label for="roomTypeDescription" class="block text-gray-700">Room Type Description:</label>-->
+<!--                        <input type="text" id="roomTypeDescription" th:field="*{description}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Room Type</button>-->
+<!--                </form>-->
+<!--                &lt;!&ndash; Table for displaying existing room types &ndash;&gt;-->
+<!--                <table class="min-w-full bg-white mt-6">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th class="py-2 px-4 bg-gray-200 text-gray-600 text-left text-sm uppercase font-semibold">ID</th>-->
+<!--                        <th class="py-2 px-4 bg-gray-200 text-gray-600 text-left text-sm uppercase font-semibold">Name</th>-->
+<!--                        <th class="py-2 px-4 bg-gray-200 text-gray-600 text-left text-sm uppercase font-semibold">Description</th>-->
+<!--                        <th class="py-2 px-4 bg-gray-200 text-gray-600 text-left text-sm uppercase font-semibold">Action</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="type : ${roomTypes}">-->
+<!--                        <td class="py-2 px-4 border-b border-gray-200 text-sm" th:text="${type.id}"></td>-->
+<!--                        <td class="py-2 px-4 border-b border-gray-200 text-sm" th:text="${type.name}"></td>-->
+<!--                        <td class="py-2 px-4 border-b border-gray-200 text-sm" th:text="${type.description}"></td>-->
+<!--                        <td class="py-2 px-4 border-b border-gray-200 text-sm">-->
+<!--                            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </main>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<script>-->
+<!--    function toggleDropdown(id) {-->
+<!--        const element = document.getElementById(id);-->
+<!--        if (element) {-->
+<!--            element.classList.toggle('hidden');-->
+<!--        }-->
+<!--    }-->
+
+<!--    function showRoomTypes(hotelId) {-->
+<!--        document.getElementById('hotelIdForRoomTypes').textContent = hotelId;-->
+<!--        document.getElementById('roomTypesSection').classList.remove('hidden');-->
+<!--        document.getElementById('roomsSection').classList.add('hidden');-->
+<!--    }-->
+
+<!--    function showRooms(hotelId) {-->
+<!--        document.getElementById('hotelIdForRooms').textContent = hotelId;-->
+<!--        document.getElementById('roomTypesSection').classList.add('hidden');-->
+<!--        document.getElementById('roomsSection').classList.remove('hidden');-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

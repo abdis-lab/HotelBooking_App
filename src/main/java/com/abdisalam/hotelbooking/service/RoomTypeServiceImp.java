@@ -5,6 +5,7 @@ import com.abdisalam.hotelbooking.repository.RoomTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomTypeServiceImp implements RoomTypeService{
@@ -31,7 +32,11 @@ public class RoomTypeServiceImp implements RoomTypeService{
     }
 
     @Override
-    public void deleteRoomType(RoomType roomType) {
-        roomTypeRepository.delete(roomType);
+    public void deleteRoomType(Long id) {
+        roomTypeRepository.deleteById(id);
+    }
+
+    public List<RoomType> getRoomTypesByHotelId(Long hotelId){
+        return roomTypeRepository.findByHotelId(hotelId);
     }
 }
