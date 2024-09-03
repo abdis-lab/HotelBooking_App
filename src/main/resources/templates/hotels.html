@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style.css">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A brief description of the page.">
-    <meta name="author" content="Your Name or Company Name">
-    <title>Hotels</title>
+    <meta name="description" content="Explore our partnered hotels around the world.">
+    <meta name="author" content="Grand Hotels">
+    <title>Our Partnered Hotels - Grand Hotels</title>
 </head>
 <body>
 <header class="text-gray-700 body-font border-b border-gray-200">
@@ -20,11 +19,11 @@
             <span class="ml-3 text-xl">Grand Hotels</span>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a th:href="@{'/hotels'}" class="mr-5 hover:text-gray-900">Hotels</a>
-            <a class="mr-5 hover:text-gray-900">Booking</a>
-            <a class="mr-5 hover:text-gray-900">Customer</a>
+            <a href="/hotels" class="mr-5 hover:text-gray-900">Hotels</a>
+            <a href="/booking" class="mr-5 hover:text-gray-900">Booking</a>
+            <a href="/customer" class="mr-5 hover:text-gray-900">Customer</a>
         </nav>
-        <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Sign Up
+        <button class="inline-flex items-center bg-indigo-500 text-white border-0 py-1 px-3 focus:outline-none hover:bg-indigo-600 rounded text-base mt-4 md:mt-0">Sign Up
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -37,7 +36,7 @@
         <!-- Header Section -->
         <div class="flex justify-between items-center mb-12">
             <h1 class="text-3xl font-bold text-white">Our Partnered Hotels</h1>
-            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"  href="/hotels/new" class="text-lg font-semibold text-blue-400 hover:text-blue-300">Add New Hotel</a>
+            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/hotels/new" class="text-lg font-semibold text-indigo-400 hover:text-indigo-300">Add New Hotel</a>
         </div>
 
         <!-- Hotels Grid -->
@@ -59,10 +58,9 @@
                     <div class="p-6 border-t border-gray-700">
                         <div class="flex space-x-3">
                             <a id="edit" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/edit/' + ${hotel.id}}"
-                               class="flex-grow px-3 py-2 text-center text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Edit</a>
+                               class="flex-grow px-3 py-2 text-center text-sm text-white bg-indigo-500 rounded-md hover:bg-indigo-600">Edit Hotel</a>
                             <a th:href="@{'/rooms/hotel/' + ${hotel.id}}" id="viewRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-green-500 rounded-md hover:bg-green-600">View Rooms</a>
-                            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" th:href="@{'/hotels/delete/' + ${hotel.id}}"
-                               class="flex-grow px-3 py-2 text-center text-sm text-white bg-red-500 rounded-md hover:bg-red-600">Delete</a>
+                            <a th:href="@{'/booking/hotel/' + ${hotel.id}}" id="bookRoom" class="flex-grow px-3 py-2 text-center text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -70,14 +68,5 @@
         </div>
     </div>
 </section>
-<!--    <h1 class="">Hotels</h1>-->
-<!--    <ul>-->
-<!--        <li th:each="hotel : ${hotels}">-->
-<!--            <a th:href="@{'/hotels/' + ${hotel.id}}" th:text="${hotel.name}"></a>-->
-<!--            (<a th:href="@{'/hotels/edit/' + ${hotel.id}}">Edit Hotel</a>)-->
-<!--            (<a th:href="@{'/hotels/delete/' + ${hotel.id}}">Delete</a>)-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--    <a href="/hotels/new">Add New Hotel</a>-->
 </body>
 </html>

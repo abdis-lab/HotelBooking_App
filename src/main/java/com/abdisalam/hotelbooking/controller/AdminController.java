@@ -1,6 +1,8 @@
 package com.abdisalam.hotelbooking.controller;
 
 import com.abdisalam.hotelbooking.dto.HotelDto;
+import com.abdisalam.hotelbooking.model.Hotel;
+import com.abdisalam.hotelbooking.service.HotelConverter;
 import com.abdisalam.hotelbooking.service.HotelService;
 import com.abdisalam.hotelbooking.service.RoomService;
 import com.abdisalam.hotelbooking.service.RoomTypeService;
@@ -27,34 +29,28 @@ public class AdminController {
     }
 
     @GetMapping("/dashboard")
-    public String adminDashboard(){
-//        List<HotelDto> hotelDto = hotelService.getAllHotels();
+    public String adminDashboard(Model model){
+        List<HotelDto> hotelDto = hotelService.getAllHotels();
 //        List<Room> rooms = roomService.getAllRooms();
 //        List<RoomType> roomTypes = roomTypeService.getAllRoomTypes();
-//
-//        model.addAttribute("hotels", hotelDto);
+
+        model.addAttribute("hotels", hotelDto);
 //        model.addAttribute("rooms", rooms);
 //        model.addAttribute("roomTypes", roomTypes);
-//
-//        System.out.println(hotelDto);
+
 
         return "admin/dashboard";
     }
 
-    @GetMapping("/basic-test")
-    public String basicTest(){
-        return "basic-test";
+    @GetMapping("/hotels/{hotelId}/details")
+    @ResponseBody
+    public Hotel getHotelDetails(@PathVariable Long hotelId){
+        HotelDto hotel = hotelService.getHotelById(hotelId);
+        return HotelConverter.convertToEntity(hotel);
     }
 
 
     //Mange Hotels
-    @GetMapping("/hotels")
-    public String manageHotels(Model model){
-        List<HotelDto> hotels = hotelService.getAllHotels();
-        model.addAttribute("hotels", hotels);
-        return "adminDashboard";
-    }
-
 
     @GetMapping("/hotels/new")
     public String createHotelForm(Model model){
@@ -70,7 +66,7 @@ public class AdminController {
         }
 
         hotelService.saveHotel(hotelDto);
-        return "redirect:/admin/admin-dashboard";
+        return "redirect:/admin/adminDashboard";
     }
 
 

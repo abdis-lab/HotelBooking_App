@@ -38,7 +38,7 @@ public class RoomController {
         model.addAttribute("roomTypes", roomTypes);
         model.addAttribute("room", new Room());
         model.addAttribute("roomType", new RoomType());
-        return "rooms";
+        return "admin/rooms";
     }
 
 
@@ -52,7 +52,7 @@ public class RoomController {
     @GetMapping("/hotel/{hotelId}/new")
     public String createRoomForm(@PathVariable Long hotelId, Model model, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "rooms";
+            return "admin/rooms";
         }
 
         HotelDto hotelDto = hotelService.getHotelById(hotelId);
@@ -66,7 +66,7 @@ public class RoomController {
         model.addAttribute("roomTypes", roomType);
 
 
-        return "rooms";
+        return "admin/rooms";
 
 
     }
